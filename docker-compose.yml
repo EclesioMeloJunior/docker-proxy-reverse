@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  proxy:
+    build: ./proxy
+    ports:
+      - 4000:80
+    links:
+      - bookstore_app01
+      - bookstore_app02
+      - bookstore_app03
+
+  bookstore_app01:
+    build: ./api
+    environment:
+      - INSTANCE_NAME=bookstore_app01
+
+  bookstore_app02:
+    build: ./api
+    environment:
+      - INSTANCE_NAME=bookstore_app02
+
+  bookstore_app03:
+    build: ./api
+    environment:
+      - INSTANCE_NAME=meuapp
